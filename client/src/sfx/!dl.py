@@ -1,7 +1,7 @@
 import requests
 import time
 
-for i in range(1, 100):
+for i in range(100, 900):
     print(i)
 
     image_url = "https://pokemoncries.com/cries/" + str(i) + ".mp3"

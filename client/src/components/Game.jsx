@@ -5,7 +5,7 @@ import OptionButton from './OptionButton';
 
 const Game = () => {
     const MIN_DEX = 1;
-    const MAX_DEX = 99;
+    const MAX_DEX = 899;
     const [dexNum, setDexNum] = useState(0);
     const [image, setImage] = useState(null);
 
@@ -33,6 +33,7 @@ const Game = () => {
     const startRound = () => {
         setRenderNow(false);
         setRoundComplete(false);
+        setCorrect(null);
         setWrong([]);
         setDexNum(Math.floor(Math.random() * (MAX_DEX - MIN_DEX + 1)) + MIN_DEX);
     }
@@ -46,9 +47,10 @@ const Game = () => {
     }, [dexNum]);
 
     useEffect(() => {
-        if (!correct) return; // don't run when the page initially loads
+        if (dexNum === 0 || !correct) return; // don't run when the page initially loads
 
         for (let i = 0; i < 3; i++) {
+            console.log('loop');
             axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random() * (MAX_DEX - MIN_DEX + 1)) + MIN_DEX}/`).then((res) => {
                 const str = res.data.name;
                 const capitalized = str.charAt(0).toUpperCase() + str.slice(1);
@@ -63,7 +65,7 @@ const Game = () => {
     }, [correct])
 
     useEffect(() => {
-        if (wrong.length === 0) return; // don't run when the page initially loads
+        if (dexNum === 0) return; // don't run when the page initially loads
         setOptions(shuffleArray([correct, ...wrong]));
         setRenderNow(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -122,7 +124,15 @@ const Game = () => {
         });
     }
 
-    if (renderNow) {
+    if (renderNow && wrong.length > 2) {
+        const buttons = options.map((text) => {
+            return (
+                <>
+                    <OptionButton text={ text || 'default' } correct={ text === correct } call={ playSound } />
+                    <br />
+                </>
+            )
+        })
         return (
             <>
                 <img src={image} alt="" /><br />
@@ -138,11 +148,7 @@ const Game = () => {
                     </>
                     :
                     <>
-                        { options.map((text) => (
-                            <>
-                                <OptionButton text={ text || 'default' } correct={ text === correct } call={ playSound } /><br />
-                            </>
-                        ))}
+                        { buttons }
                     </>
                 }
             </>
