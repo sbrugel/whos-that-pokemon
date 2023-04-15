@@ -39,6 +39,7 @@ const Game = () => {
 
     useEffect(() => {
         if (dexNum === 0) return; // don't do anything right when the page loads. Wait until this actually gets set to something
+        setImage(require(`../img/${dexNum}.png`));
         axios.get(`https://pokeapi.co/api/v2/pokemon/${dexNum}/`).then((res) => {
             setCorrect(res.data.name.charAt(0).toUpperCase() + res.data.name.slice(1));
         })
@@ -64,7 +65,7 @@ const Game = () => {
     useEffect(() => {
         if (wrong.length === 0) return; // don't run when the page initially loads
         setOptions(shuffleArray([correct, ...wrong]));
-        setImage(require(`../img/${dexNum}.png`));
+        setRenderNow(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [wrong])
 
@@ -103,10 +104,9 @@ const Game = () => {
             // Get the data URL of the modified image
             const dataUrl = canvas.toDataURL('image/png');
             setImage(dataUrl);
-            setRenderNow(true);
           };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [image, roundComplete])
+    }, [image])
 
     const playSound = () => {
         const audio = new Audio(require(`../sfx/${dexNum}.mp3`));
