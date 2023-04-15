@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/whos-that-pokemon/static/css/main.073c9b0a.css",
-    "main.js": "/whos-that-pokemon/static/js/main.9333d09c.js",
+    "main.css": "/whos-that-pokemon/static/css/main.55fb096c.css",
+    "main.js": "/whos-that-pokemon/static/js/main.a0008d96.js",
     "static/media/812.png": "/whos-that-pokemon/static/media/812.cf6183c55c51d16d756a.png",
     "static/media/879.png": "/whos-that-pokemon/static/media/879.2db18d8289fd5aeec493.png",
     "static/media/866.png": "/whos-that-pokemon/static/media/866.5506d917ed4f25a5791f.png",
@@ -892,23 +892,6 @@
     "static/media/863.mp3": "/whos-that-pokemon/static/media/863.a67cf17e2ba9b6263c65.mp3",
     "static/media/741.mp3": "/whos-that-pokemon/static/media/741.4d5d0492d072af9a915e.mp3",
     "static/media/745.mp3": "/whos-that-pokemon/static/media/745.4d5d0492d072af9a915e.mp3",
-    "static/media/803.mp3": "/whos-that-pokemon/static/media/803.4d5d0492d072af9a915e.mp3",
-    "static/media/804.mp3": "/whos-that-pokemon/static/media/804.4d5d0492d072af9a915e.mp3",
-    "static/media/805.mp3": "/whos-that-pokemon/static/media/805.4d5d0492d072af9a915e.mp3",
-    "static/media/806.mp3": "/whos-that-pokemon/static/media/806.4d5d0492d072af9a915e.mp3",
-    "static/media/807.mp3": "/whos-that-pokemon/static/media/807.4d5d0492d072af9a915e.mp3",
-    "static/media/808.mp3": "/whos-that-pokemon/static/media/808.4d5d0492d072af9a915e.mp3",
-    "static/media/809.mp3": "/whos-that-pokemon/static/media/809.4d5d0492d072af9a915e.mp3",
-    "static/media/890.mp3": "/whos-that-pokemon/static/media/890.4d5d0492d072af9a915e.mp3",
-    "static/media/891.mp3": "/whos-that-pokemon/static/media/891.4d5d0492d072af9a915e.mp3",
-    "static/media/892.mp3": "/whos-that-pokemon/static/media/892.4d5d0492d072af9a915e.mp3",
-    "static/media/893.mp3": "/whos-that-pokemon/static/media/893.4d5d0492d072af9a915e.mp3",
-    "static/media/894.mp3": "/whos-that-pokemon/static/media/894.4d5d0492d072af9a915e.mp3",
-    "static/media/895.mp3": "/whos-that-pokemon/static/media/895.4d5d0492d072af9a915e.mp3",
-    "static/media/896.mp3": "/whos-that-pokemon/static/media/896.4d5d0492d072af9a915e.mp3",
-    "static/media/897.mp3": "/whos-that-pokemon/static/media/897.4d5d0492d072af9a915e.mp3",
-    "static/media/898.mp3": "/whos-that-pokemon/static/media/898.4d5d0492d072af9a915e.mp3",
-    "static/media/899.mp3": "/whos-that-pokemon/static/media/899.4d5d0492d072af9a915e.mp3",
     "static/media/173.mp3": "/whos-that-pokemon/static/media/173.abe03ce088c18573cfa7.mp3",
     "static/media/19.mp3": "/whos-that-pokemon/static/media/19.ab914b79936bed4ec38d.mp3",
     "static/media/290.mp3": "/whos-that-pokemon/static/media/290.133973fa02249e1fdf09.mp3",
@@ -960,11 +943,11 @@
     "static/media/875.mp3": "/whos-that-pokemon/static/media/875.986de22f6b2c27ea0e14.mp3",
     "static/media/270.mp3": "/whos-that-pokemon/static/media/270.2520a1c40890f04c5ad2.mp3",
     "index.html": "/whos-that-pokemon/index.html",
-    "main.073c9b0a.css.map": "/whos-that-pokemon/static/css/main.073c9b0a.css.map",
-    "main.9333d09c.js.map": "/whos-that-pokemon/static/js/main.9333d09c.js.map"
+    "main.55fb096c.css.map": "/whos-that-pokemon/static/css/main.55fb096c.css.map",
+    "main.a0008d96.js.map": "/whos-that-pokemon/static/js/main.a0008d96.js.map"
   },
   "entrypoints": [
-    "static/css/main.073c9b0a.css",
-    "static/js/main.9333d09c.js"
+    "static/css/main.55fb096c.css",
+    "static/js/main.a0008d96.js"
   ]
 }
