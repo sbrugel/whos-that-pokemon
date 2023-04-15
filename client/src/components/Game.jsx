@@ -5,7 +5,8 @@ import OptionButton from './OptionButton';
 
 const Game = () => {
     const MIN_DEX = 1;
-    const MAX_DEX = 899;
+    const MAX_DEX = 889;
+    const EXCLUDE = [802, 803, 804, 805, 806, 807, 808, 809]
     const [dexNum, setDexNum] = useState(0);
     const [image, setImage] = useState(null);
 
@@ -28,6 +29,7 @@ const Game = () => {
 
     useEffect(() => {
         startRound(); // start a new round (pick a mon and wrong options)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const startRound = () => {
@@ -35,7 +37,11 @@ const Game = () => {
         setRoundComplete(false);
         setCorrect(null);
         setWrong([]);
-        setDexNum(Math.floor(Math.random() * (MAX_DEX - MIN_DEX + 1)) + MIN_DEX);
+        let num;
+        do {
+            num = Math.floor(Math.random() * (MAX_DEX - MIN_DEX + 1)) + MIN_DEX
+        } while (EXCLUDE.includes(num));
+        setDexNum(num);
     }
 
     useEffect(() => {
@@ -124,40 +130,68 @@ const Game = () => {
         });
     }
 
-    if (renderNow && wrong.length > 2) {
-        const buttons = options.map((text) => {
-            return (
-                <>
-                    <OptionButton text={ text || 'default' } correct={ text === correct } call={ playSound } />
-                    <br />
-                </>
-            )
-        })
-        return (
+    const UI = 
+        <div style={{
+            width: "25%",
+            height: "10vh",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: "5px"
+        }}>
+        {
+            roundComplete 
+            ?
             <>
-                <img src={image} alt="" /><br />
-                {
-                    roundComplete 
-                    ?
-                    <>
-                        <p>That's right!</p>
-                        <button onClick={() => {
-                            setRenderNow(false);
-                            startRound();
-                        }} disabled={audioPlaying}>Next Round</button>
-                    </>
-                    :
-                    <>
-                        { buttons }
-                    </>
-                }
+                <p>That's right!</p>
+                <button onClick={() => {
+                    setRenderNow(false);
+                    startRound();
+                }} disabled={audioPlaying}>Next Round</button>
             </>
-        )
-    } else {
-        return (
-            <p>Waiting...</p>
-        )
-    }
+            :
+            <>
+                <p>Who's that Pokemon?</p>
+                { options.map((text) => {
+                    return (
+                        <>
+                            <OptionButton text={ (renderNow && wrong.length > 2) ? text : 'Waiting...' } correct={ text === correct } call={ playSound } enabled={(renderNow && wrong.length > 2)} />
+                            <br />
+                        </>
+                    )
+                }) }
+            </>
+        }
+        </div>
+
+    return (
+        <>
+            <div
+                style={{
+                    backgroundImage: `url(https://external-preview.redd.it/e5zoQw-hgw-LCjdhC_4G8IAcHxex5pzda_BD_FPTcBY.png?auto=webp&s=c0b96b5ec20010a15864b8a0c9b202c119e52fe8)`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    height: "50%",
+                    width: "50%",
+                    border: "5px solid",
+                    padding: "50px"
+                }}
+            >
+                <img 
+                    src={image} 
+                    style={{
+                        position: "relative",
+                        top: "20%",
+                        right: "20%",
+                        height: "70%"
+                    }}
+                    alt="" /><br />
+            </div>
+
+            { UI }
+        </>
+    )
     
 }
 
