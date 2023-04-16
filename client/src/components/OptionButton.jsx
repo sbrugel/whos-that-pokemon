@@ -1,16 +1,18 @@
 import React from 'react';
 
-const OptionButton = ({ text, correct, call, enabled }) => {
+const OptionButton = ({ text, correct, callIfCorrect, callIfWrong, enabled }) => {
     return (
-        <button onClick={() => { 
-            if (correct) {
-                call();
-            } else {
-                alert('Not quite. Try again!');
-            }
-        }}
-        disabled={!enabled}
-        >{ text }</button>
+        <>
+            <button onClick={() => { 
+                if (correct) {
+                    callIfCorrect();
+                } else {
+                    callIfWrong();
+                }
+            }}
+            disabled={!enabled}
+            >{ text }</button>
+        </>
     )
 }
 

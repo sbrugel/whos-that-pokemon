@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import OptionButton from './OptionButton';
 
 /*
@@ -133,6 +136,10 @@ const Game = ({ settings }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [image])
 
+    const errorToast = () => {
+        toast.error('Not quite. Try again!');
+    }
+
     const playSound = () => {
         const audio = new Audio(require(`../sfx/${dexNum}.mp3`));
 
@@ -141,7 +148,7 @@ const Game = ({ settings }) => {
         setImage(`https://pokemoncries.com/pokemon-images/${dexNum}.png`);
         
         if (!settings.cries) return;
-        
+
         audio.play();
         setAudioPlaying(true);
         audio.addEventListener("ended", () => {
@@ -181,7 +188,7 @@ const Game = ({ settings }) => {
                 options.map((text) => {
                     return (
                         <>
-                            <OptionButton text={ (renderNow && wrong.length > 2) ? text : 'Waiting...' } correct={ text === correct } call={ playSound } enabled={(renderNow && wrong.length > 2)} />
+                            <OptionButton text={ (renderNow && wrong.length > 2) ? text : 'Waiting...' } correct={ text === correct } callIfCorrect={ playSound } callIfWrong={ errorToast } enabled={(renderNow && wrong.length > 2)} />
                             <br />
                         </>
                     )
@@ -190,7 +197,7 @@ const Game = ({ settings }) => {
                 <>
                     <input type="text" onChange={ handleTextInputChange } />
                     <br />
-                    <OptionButton text='Submit' correct={ (input.toLowerCase().charAt(0).toUpperCase() + input.toLowerCase().slice(1)) === correct } call={ playSound } enabled={(renderNow)} />
+                    <OptionButton text='Submit' correct={ (input.toLowerCase().charAt(0).toUpperCase() + input.toLowerCase().slice(1)) === correct } callIfCorrect={ playSound } callIfWrong={ errorToast } enabled={(renderNow)} />
                 </> }
             </>
         }
@@ -221,9 +228,13 @@ const Game = ({ settings }) => {
             </div>
 
             { UI }
+            <ToastContainer />
+
+            <div className="portrait">
+                <p>Please turn your phone to landscape mode!</p>
+            </div>
         </>
     )
-    
 }
 
 export default Game;
