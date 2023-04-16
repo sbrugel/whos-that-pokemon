@@ -3,7 +3,16 @@ import axios from 'axios';
 
 import OptionButton from './OptionButton';
 
-const Game = () => {
+/*
+const settings = {
+    cries: boolean,
+    hardMode: boolean,
+    oneTry: boolean,
+    quiz: boolean
+}
+if only I did this in typescript
+*/
+const Game = ({ settings }) => {
     const MIN_DEX = 1;
     const MAX_DEX = 889;
     const EXCLUDE = [802, 803, 804, 805, 806, 807, 808, 809]
@@ -13,10 +22,15 @@ const Game = () => {
     const [audioPlaying, setAudioPlaying] = useState(false);
     const [roundComplete, setRoundComplete] = useState(false);
 
+    // the option buttons (for multiple choice)
     const [options, setOptions] = useState([]);
     const [correct, setCorrect] = useState(null);
     const [wrong, setWrong] = useState([]);
 
+    // the text input (for hard mode)
+    const [input, setInput] = useState('');
+
+    // toggles whether all components should render
     const [renderNow, setRenderNow] = useState(false);
 
     const shuffleArray = (arr) => {
@@ -53,10 +67,13 @@ const Game = () => {
     }, [dexNum]);
 
     useEffect(() => {
-        if (dexNum === 0 || !correct) return; // don't run when the page initially loads
+        if (dexNum === 0 || !correct) return; // don't run when the page initially loads; also do not run on hard mode
+        if (settings.hardMode) {
+            setWrong(null);
+            return;
+        }
 
         for (let i = 0; i < 3; i++) {
-            console.log('loop');
             axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random() * (MAX_DEX - MIN_DEX + 1)) + MIN_DEX}/`).then((res) => {
                 const str = res.data.name;
                 const capitalized = str.charAt(0).toUpperCase() + str.slice(1);
@@ -123,11 +140,17 @@ const Game = () => {
         setRoundComplete(true);
         setImage(`https://pokemoncries.com/pokemon-images/${dexNum}.png`);
         
+        if (!settings.cries) return;
+        
         audio.play();
         setAudioPlaying(true);
         audio.addEventListener("ended", () => {
             setAudioPlaying(false);
         });
+    }
+
+    const handleTextInputChange = (e) => {
+        setInput(e.target.value);
     }
 
     const UI = 
@@ -153,14 +176,22 @@ const Game = () => {
             :
             <>
                 <p>Who's that Pokemon?</p>
-                { options.map((text) => {
+                { !settings.hardMode
+                ? 
+                options.map((text) => {
                     return (
                         <>
                             <OptionButton text={ (renderNow && wrong.length > 2) ? text : 'Waiting...' } correct={ text === correct } call={ playSound } enabled={(renderNow && wrong.length > 2)} />
                             <br />
                         </>
                     )
-                }) }
+                })
+                : 
+                <>
+                    <input type="text" onChange={ handleTextInputChange } />
+                    <br />
+                    <OptionButton text='Submit' correct={ (input.toLowerCase().charAt(0).toUpperCase() + input.toLowerCase().slice(1)) === correct } call={ playSound } enabled={(renderNow)} />
+                </> }
             </>
         }
         </div>
