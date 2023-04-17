@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/whos-that-pokemon/static/css/main.55fb096c.css",
-    "main.js": "/whos-that-pokemon/static/js/main.a0008d96.js",
+    "main.css": "/whos-that-pokemon/static/css/main.67105752.css",
+    "main.js": "/whos-that-pokemon/static/js/main.11cd5176.js",
     "static/media/812.png": "/whos-that-pokemon/static/media/812.cf6183c55c51d16d756a.png",
     "static/media/879.png": "/whos-that-pokemon/static/media/879.2db18d8289fd5aeec493.png",
     "static/media/866.png": "/whos-that-pokemon/static/media/866.5506d917ed4f25a5791f.png",
@@ -943,11 +943,11 @@
     "static/media/875.mp3": "/whos-that-pokemon/static/media/875.986de22f6b2c27ea0e14.mp3",
     "static/media/270.mp3": "/whos-that-pokemon/static/media/270.2520a1c40890f04c5ad2.mp3",
     "index.html": "/whos-that-pokemon/index.html",
-    "main.55fb096c.css.map": "/whos-that-pokemon/static/css/main.55fb096c.css.map",
-    "main.a0008d96.js.map": "/whos-that-pokemon/static/js/main.a0008d96.js.map"
+    "main.67105752.css.map": "/whos-that-pokemon/static/css/main.67105752.css.map",
+    "main.11cd5176.js.map": "/whos-that-pokemon/static/js/main.11cd5176.js.map"
   },
   "entrypoints": [
-    "static/css/main.55fb096c.css",
-    "static/js/main.a0008d96.js"
+    "static/css/main.67105752.css",
+    "static/js/main.11cd5176.js"
   ]
 }
