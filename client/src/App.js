@@ -13,10 +13,11 @@ function App() {
 
   return (
     <div className="App">
-      <Routes>
+      <Game settings={settings} />
+      {/* <Routes>
         <Route path="/" element={<MainMenu />} />
         <Route exact path="/game" element={<Game settings={settings} />} />
-      </Routes>
+      </Routes> */}
     </div>
   );
 }
